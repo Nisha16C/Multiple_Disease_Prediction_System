@@ -136,13 +136,34 @@ if selected == 'Heart Disease Prediction':
     # creating a button for Prediction
 
     if st.button('Heart Disease Test Result'):
-        heart_prediction = heart_disease_model.predict(
-            [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
+        try:
+            # Convert input values to numeric types
+            age = float(age)
+            sex = float(sex)
+            cp = float(cp)
+            trestbps = float(trestbps)
+            chol = float(chol)
+            fbs = float(fbs)
+            restecg = float(restecg)
+            thalach = float(thalach)
+            exang = float(exang)
+            oldpeak = float(oldpeak)
+            slope = float(slope)
+            ca = float(ca)
+            thal = float(thal)
 
-        if heart_prediction[0] == 1:
-            heart_diagnosis = 'The person is having heart disease'
-        else:
-            heart_diagnosis = 'The person does not have any heart disease'
+            # Make the prediction
+            heart_prediction = heart_disease_model.predict(
+                [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
+
+            if heart_prediction[0] == 1:
+                heart_diagnosis = 'The person is having heart disease'
+            else:
+                heart_diagnosis = 'The person does not have any heart disease'
+
+        except ValueError as e:
+            # Handle the error if the conversion fails
+            heart_diagnosis = 'Error: Please provide valid numeric inputs for all features.'
 
     st.success(heart_diagnosis)
 
