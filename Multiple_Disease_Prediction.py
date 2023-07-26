@@ -69,13 +69,17 @@ if selected == 'Diabetes Prediction':
     # creating a button for Prediction
 
     if st.button('Diabetes Test Result'):
-        diab_prediction = diabetes_model.predict(
-            [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+        try:
+            diab_prediction = diabetes_model.predict(
+                [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
 
-        if diab_prediction[0] == 1:
-            diab_diagnosis = 'The person is diabetic'
-        else:
-            diab_diagnosis = 'The person is not diabetic'
+            if diab_prediction[0] == 1:
+                diab_diagnosis = 'The person is diabetic'
+            else:
+                diab_diagnosis = 'The person is not diabetic'
+
+        except ValueError as e:
+            diab_diagnosis = 'Error: Please Fill all blocks for the result.'
 
     st.success(diab_diagnosis)
 
@@ -163,7 +167,7 @@ if selected == 'Heart Disease Prediction':
 
         except ValueError as e:
             # Handle the error if the conversion fails
-            heart_diagnosis = 'Error: Please provide valid numeric inputs for all features.'
+            heart_diagnosis = 'Error: Please Fill all blocks for the result.'
 
     st.success(heart_diagnosis)
 
@@ -251,13 +255,17 @@ if selected == "Parkinsons Prediction":
 
     # creating a button for Prediction
     if st.button("Parkinson's Test Result"):
-        parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP,
-                                                           Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE,
-                                                           DFA, spread1, spread2, D2, PPE]])
+        try:
+            parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP,
+                                                               Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE,
+                                                               DFA, spread1, spread2, D2, PPE]])
 
-        if parkinsons_prediction[0] == 1:
-            parkinsons_diagnosis = "The person has Parkinson's disease"
-        else:
-            parkinsons_diagnosis = "The person does not have Parkinson's disease"
+            if parkinsons_prediction[0] == 1:
+                parkinsons_diagnosis = "The person has Parkinson's disease"
+            else:
+                parkinsons_diagnosis = "The person does not have Parkinson's disease"
+
+        except ValueError as e:
+            parkinsons_diagnosis = 'Error: Please Fill all blocks for the result.'
 
     st.success(parkinsons_diagnosis)
