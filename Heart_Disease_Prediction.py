@@ -82,7 +82,7 @@ input_data_reshaped = input_data_as_numpy_array.reshape(1, -1)
 prediction = model.predict(input_data_reshaped)
 print(prediction)
 
-if prediction[0] == 1:
-    print('The Person does not have a Heart Disease')
-else:
+if prediction[0] == 0:
     print('The Person has Heart Disease')
+else:
+    print('The Person has No Heart Disease')

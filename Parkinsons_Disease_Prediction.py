@@ -28,7 +28,8 @@ df = parkinsons_data.shape
 print(df)
 
 # getting more information about the dataset
-parkinsons_data.info()
+df = parkinsons_data.info()
+print(df)
 
 # checking for missing values in each column
 df = parkinsons_data.isnull().sum()
@@ -54,7 +55,6 @@ print(Y)
 # Splitting the data to training data & Test data
 
 # TEST_SIZE = the proportion of the dataset that should be used for testing.
-# In this case, 20% of the data will be used for testing
 
 # X_Train = This is the training set of the input data, which will be used to fit a model
 # Y_Train = This is the training set of the target variable, which corresponds to X_train.
@@ -76,6 +76,9 @@ print(X_train)
 # Model Training
 # Support Vector Machine Model
 
+
+#this code initializes an SVM model with a linear kernel and trains it using the
+# training data provided. The resulting trained model can then be used to make predictions on new data
 model = svm.SVC(kernel='linear')
 # training the SVM model with training data
 model.fit(X_train, Y_train)
